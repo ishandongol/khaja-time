@@ -1,34 +1,33 @@
 import { useCallback, useEffect, useState } from "react";
+import { predictImage } from "./api/predict";
 import { ImageUploader } from "./components/ImageUploader";
 import { Wrapper } from "./components/Wrapper";
 
 function App() {
   const [selectedImage, setSelectedImage] = useState<string>("");
-  const [predicting, setPredicting] = useState<boolean>(false);
+  const [isPredicting, setIsPredicting] = useState<boolean>(false);
+  const [prediction, setPrediction] = useState();
   const [error, setError] = useState<boolean>(false);
 
-  const predict = useCallback(async () => {
-    if (selectedImage) {
-      try {
-        setPredicting(true);
-        setError(false);
-        // TODO: call api
-      } catch (err) {
-        setError(true);
-      } finally {
-        setError(false);
-        setPredicting(false);
-      }
+  const predict = useCallback(async (file: File) => {
+    try {
+      setIsPredicting(true);
+      setError(false);
+      const prediction = await predictImage(file);
+      setPrediction(prediction);
+    } catch (err) {
+      setError(true);
+      setPrediction(undefined);
+    } finally {
+      setError(false);
+      setIsPredicting(false);
     }
-  }, [selectedImage]);
-
-  useEffect(() => {
-    predict();
-  }, [selectedImage, predict]);
+  }, []);
 
   const handleChange = (files: FileList | null) => {
     if (files !== null) {
       setSelectedImage(URL.createObjectURL(files[0]));
+      predict(files[0]);
     } else {
       setSelectedImage("");
     }
@@ -50,7 +49,7 @@ function App() {
             <div className="w-1/2 h-1/2">
               <Wrapper
                 title="Selected Image"
-                className={predicting ? "animate-pulse" : ""}
+                className={isPredicting ? "animate-pulse" : ""}
               >
                 {selectedImage ? (
                   <img
@@ -65,7 +64,11 @@ function App() {
             </div>
             <div className="w-1/2 h-1/2">
               <Wrapper title="Prediction">
-                {predicting ? "Predicting..." : <>None</>}
+                {isPredicting ? (
+                  "Predicting..."
+                ) : (
+                  <>{JSON.stringify(prediction)}</>
+                )}
               </Wrapper>
             </div>
           </div>
