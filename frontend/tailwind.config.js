@@ -4,6 +4,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         ai: "url(./ai.png)",
+        momo: "url(./momo.jpeg)",
       },
     },
   },
