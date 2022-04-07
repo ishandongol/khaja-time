@@ -10,7 +10,7 @@ origins = ["*"]
 
 app = FastAPI()
 current_file_dir = os.getcwd()
-model_path = os.path.join(current_file_dir, 'my_model.h5')
+model_path = os.path.join(current_file_dir, 'app/my_model.h5')
 reconstructed_model = keras.models.load_model(
     model_path)
 
@@ -35,7 +35,7 @@ def read_root():
 @app.post("/predict")
 async def read_item(file: UploadFile):
     fileExtension = file.filename.split('.')[-1]
-    fileName = "predict.{0}".format(fileExtension)
+    fileName = "app/predict.{0}".format(fileExtension)
     async with aiofiles.open(fileName, 'wb') as out_file:
         content = await file.read()  # async read
         await out_file.write(content)  # async write
