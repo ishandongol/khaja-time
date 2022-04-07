@@ -1,7 +1,6 @@
 from fastapi import FastAPI, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 import aiofiles
-from matplotlib.pyplot import axis
 from tensorflow import keras
 import os
 import numpy as np

@@ -5,8 +5,8 @@ const instance = axios.create({
   baseURL,
 });
 
-export const asyncFunction = async (config: AxiosRequestConfig) => {
-  const response = await instance.request(config);
+export const asyncFunction = async <T>(config: AxiosRequestConfig) => {
+  const response = await instance.request<T>(config);
   return response.data;
 };
 

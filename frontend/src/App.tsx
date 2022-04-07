@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
-import { predictImage } from "./api/predict";
+import { predictImage, PredictResponse } from "./api/predict";
 import { ImageUploader } from "./components/ImageUploader";
 import { Wrapper } from "./components/Wrapper";
 
 function App() {
   const [selectedImage, setSelectedImage] = useState<string>("");
   const [isPredicting, setIsPredicting] = useState<boolean>(false);
-  const [prediction, setPrediction] = useState();
+  const [prediction, setPrediction] = useState<PredictResponse>();
   const [error, setError] = useState<boolean>(false);
 
   const predict = useCallback(async (file: File) => {
@@ -67,7 +67,7 @@ function App() {
                 {isPredicting ? (
                   "Predicting..."
                 ) : (
-                  <>{JSON.stringify(prediction)}</>
+                  <p className="text-5xl">{prediction?.label}</p>
                 )}
               </Wrapper>
             </div>
