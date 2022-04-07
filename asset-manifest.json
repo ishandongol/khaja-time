@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/khaja-time/static/css/main.3e431266.css",
-    "main.js": "/khaja-time/static/js/main.d86d3294.js",
+    "main.css": "/khaja-time/static/css/main.bd799a80.css",
+    "main.js": "/khaja-time/static/js/main.9cc47f93.js",
     "static/js/787.e116380f.chunk.js": "/khaja-time/static/js/787.e116380f.chunk.js",
     "static/media/ai.png": "/khaja-time/static/media/ai.c2e1d596a23ea07441bf.png",
     "index.html": "/khaja-time/index.html",
-    "main.3e431266.css.map": "/khaja-time/static/css/main.3e431266.css.map",
-    "main.d86d3294.js.map": "/khaja-time/static/js/main.d86d3294.js.map",
+    "main.bd799a80.css.map": "/khaja-time/static/css/main.bd799a80.css.map",
+    "main.9cc47f93.js.map": "/khaja-time/static/js/main.9cc47f93.js.map",
     "787.e116380f.chunk.js.map": "/khaja-time/static/js/787.e116380f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3e431266.css",
-    "static/js/main.d86d3294.js"
+    "static/css/main.bd799a80.css",
+    "static/js/main.9cc47f93.js"
   ]
 }
