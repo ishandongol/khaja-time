@@ -8,6 +8,29 @@ import pandas as pd
 
 origins = ["*"]
 
+labels = [
+    "Alu Chips",
+    "Aludum",
+    "Choila",
+    "Dal Bhat",
+    "Dhedo",
+    "Fried Rice",
+    "Lakhamari",
+    "Laping",
+    "Malpua",
+    "Momo",
+    "Muri Ko Ladu",
+    "Pakoda",
+    "Panipuri",
+    "Paratha",
+    "Samay Baji",
+    "Samosa",
+    "Sekuwa",
+    "Selroti",
+    "Thenduk",
+    "Thukpa",
+    "Yomari"
+]
 app = FastAPI()
 current_file_dir = os.getcwd()
 model_path = os.path.join(current_file_dir, 'app/my_model.h5')
@@ -53,6 +76,6 @@ async def read_item(file: UploadFile):
         batch_size=4,
         shuffle=False
     )
-    predictions = np.argmax(
+    prediction = np.argmax(
         reconstructed_model.predict(predict_images))
-    return {"label": str(predictions)}
+    return {"label": labels[prediction]}
